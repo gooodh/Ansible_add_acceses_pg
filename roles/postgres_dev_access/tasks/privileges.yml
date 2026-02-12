@@ -1,0 +1,32 @@
+- name: Grant CONNECT on database
+  become: true
+  become_user: postgres
+  community.postgresql.postgresql_privs:
+    type: database
+    database: "{{ pg_database }}"
+    roles: "{{ pg_dev_user }}"
+    privs: CONNECT
+    state: present
+
+- name: Grant USAGE on schema
+  become: true
+  become_user: postgres
+  community.postgresql.postgresql_privs:
+    type: schema
+    database: "{{ pg_database }}"
+    schema: "{{ pg_schema }}"
+    roles: "{{ pg_dev_user }}"
+    privs: USAGE
+    state: present
+
+- name: Grant table privileges
+  become: true
+  become_user: postgres
+  community.postgresql.postgresql_privs:
+    type: table
+    database: "{{ pg_database }}"
+    schema: "{{ pg_schema }}"
+    roles: "{{ pg_dev_user }}"
+    privs: "{{ pg_dev_privileges | join(',') }}"
+    objs: ALL_IN_SCHEMA
+    state: present

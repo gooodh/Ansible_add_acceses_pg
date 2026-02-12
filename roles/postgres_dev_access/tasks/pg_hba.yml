@@ -1,0 +1,10 @@
+- name: Add pg_hba rule for developer
+  become: true
+  community.postgresql.postgresql_pg_hba:
+    dest: "/etc/postgresql/{{ pg_version }}/{{ pg_cluster }}/pg_hba.conf"
+    contype: host
+    databases: "{{ pg_database }}"
+    users: "{{ pg_dev_user }}"
+    address: "{{ pg_hba_address }}"
+    method: "{{ pg_hba_method }}"
+  notify: Reload PostgreSQL

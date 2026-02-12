@@ -1,0 +1,20 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/postgresql_dev_access
+
+- name: Install psycopg2 dependency
+  apt:
+    name: python3-psycopg2
+    state: present
+    update_cache: true
+  when: pg_install_psycopg2
+
+- name: Include user management
+  import_tasks: user.yml
+
+- name: Include privilege management
+  import_tasks: privileges.yml
+
+- name: Include pg_hba configuration
+  import_tasks: pg_hba.yml
+  when: pg_manage_hba

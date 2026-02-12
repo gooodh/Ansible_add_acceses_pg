@@ -1,0 +1,8 @@
+- name: Ensure PostgreSQL role exists
+  become: true
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    name: "{{ pg_dev_user }}"
+    password: "{{ pg_dev_password }}"
+    role_attr_flags: "{{ pg_dev_role_flags }}"
+    state: present

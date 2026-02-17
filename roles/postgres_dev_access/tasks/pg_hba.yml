@@ -7,4 +7,9 @@
     users: "{{ pg_dev_user }}"
     address: "{{ pg_hba_address }}"
     method: "{{ pg_hba_method }}"
-  notify: Reload PostgreSQL
+
+- name: Reload PostgreSQL
+  become: true
+  service:
+    name: postgresql
+    state: reloaded

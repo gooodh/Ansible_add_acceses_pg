@@ -1,0 +1,16 @@
+pg_dev_user: developer1
+
+pg_database: mailing_bot
+pg_schema: public
+
+pg_dev_privileges:
+  - SELECT
+  - INSERT
+  - UPDATE
+  - DELETE
+
+pg_dev_role_flags: "LOGIN"
+
+pg_manage_hba: true
+pg_hba_address: 10.10.0.0/16
+pg_hba_method: scram-sha-256

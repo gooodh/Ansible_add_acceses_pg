@@ -1,0 +1,7 @@
+
+---
+# PostgreSQL developer access configuration
+
+pg_version: 16
+pg_cluster: main
+pg_install_psycopg2: true

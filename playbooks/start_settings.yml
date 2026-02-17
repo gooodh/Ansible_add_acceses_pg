@@ -1,0 +1,5 @@
+- name: Update packages
+  hosts: all
+  become: true
+  roles:
+    - { role: postgres_dev_access, tags: ["postgresql"] }
